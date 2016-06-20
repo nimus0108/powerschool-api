@@ -1,3 +1,4 @@
+var login = require("./login.js");
 var scrape = require("./scrape.js");
 
 var express = require('express');
@@ -23,10 +24,13 @@ router.get('/', function(req, res) {
 router.post('/', function(req,res) {
 	var username = req.body.username;
     var password = req.body.password;
-    var result = scrape.login(username, password);
+    var result = login.login(username, password);
     result.then(function (grades) {
         console.log(grades);
+        res.send(result);
     });
+    // console.log(result);
+    // res.send(result);
 });
 
 
